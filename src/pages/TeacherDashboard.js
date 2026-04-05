@@ -20,6 +20,7 @@ const TeacherDashboard = () => {
   };
 
  useEffect(() => {
+  // adding comment
   fetchAssignments();
 }, [statusFilter]);
 
