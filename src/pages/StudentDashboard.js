@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import API from '../services/api';
 import { AuthContext } from '../context/AuthContext';
-import { Send, CheckCircle, Clock, BookOpen, MessageSquare, History } from 'lucide-react';
+import { Send, CheckCircle, Clock, BookOpen, History } from 'lucide-react';
 
 const StudentDashboard = () => {
   const [assignments, setAssignments] = useState([]);

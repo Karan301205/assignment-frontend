@@ -19,7 +19,10 @@ const TeacherDashboard = () => {
     }
   };
 
-  useEffect(() => { fetchAssignments(); }, [statusFilter]);
+ useEffect(() => {
+  fetchAssignments();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [statusFilter]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
