@@ -5,11 +5,13 @@ const API = axios.create({
 });
 
 API.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token'); // Must match the key in AuthContext
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`; // Must have the space after 'Bearer'
   }
   return config;
+}, (error) => {
+  return Promise.reject(error);
 });
 
 export default API;

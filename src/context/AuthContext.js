@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post('https://assignment-backend-byxf.onrender.com/api/auth/login', { email, password });
+      const res = await API.post('/auth/login', { email, password }); 
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
       setUser({ token: res.data.token, role: res.data.role });

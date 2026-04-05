@@ -21,21 +21,30 @@ const TeacherDashboard = () => {
 
  useEffect(() => {
   fetchAssignments();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [statusFilter]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (editingId) { await API.put(`/assignments/${editingId}`, formData); } 
-      else { await API.post('/assignments', formData); }
+      const payload = {
+        ...formData,
+        dueDate: new Date(formData.dueDate).toISOString()
+      };
+
+      if (editingId) { 
+        await API.put(`/assignments/${editingId}`, payload); 
+      } else { 
+        await API.post('/assignments', payload); 
+      }
+
       setEditingId(null);
       setShowForm(false);
       setFormData({ title: '', description: '', dueDate: '' });
       fetchAssignments();
-    } catch (err) { alert("Error saving assignment"); }
+    } catch (err) { 
+      alert("Error saving assignment"); 
+    }
   };
-
   const startEdit = (asg) => {
     setFormData({ title: asg.title, description: asg.description, dueDate: asg.dueDate.split('T')[0] });
     setEditingId(asg._id);
